@@ -36,7 +36,7 @@ const loadMorePhotos = async function (entries, observer) {
       observer.unobserve(entry.target);
       pixaby.incrementPage();
 
-      spinnerPlay();
+     
 
       try {
         spinnerPlay();
@@ -121,27 +121,6 @@ const onSubmitClick = async event => {
     clearPage();
   } finally {
     spinnerStop();
-  }
-};
-
-const onLoadMore = async () => {
-  pixaby.incrementPage();
-
-  if (!pixaby.hasMorePhotos) {
-    refs.btnLoadMore.classList.add('is-hidden');
-    Notify.info("We're sorry, but you've reached the end of search results.");
-    notifyInit;
-  }
-  try {
-    const { hits } = await pixaby.getPhotos();
-    const markup = createMarkup(hits);
-    refs.gallery.insertAdjacentHTML('beforeend', markup);
-
-    modalLightboxGallery.refresh();
-  } catch (error) {
-    Notify.failure(error.message, 'Something went wrong!', notifyInit);
-
-    clearPage();
   }
 };
 
