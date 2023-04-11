@@ -45,7 +45,7 @@ const loadMorePhotos = async function (entries, observer) {
         const markup = createMarkup(hits);
         refs.gallery.insertAdjacentHTML('beforeend', markup);
 
-        if (pixaby.hasMorePhotos) {
+        if (pixaby.hasMorePhotos()) {
           const lastItem = document.querySelector('.gallery a:last-child');
           observer.observe(lastItem);
         } else
@@ -108,7 +108,7 @@ const onSubmitClick = async event => {
     pixaby.setTotal(total);
     Notify.success(`Hooray! We found ${total} images.`, notifyInit);
 
-    if (pixaby.hasMorePhotos) {
+    if (pixaby.hasMorePhotos()) {
 
       const lastItem = document.querySelector('.gallery a:last-child');
       observer.observe(lastItem);
